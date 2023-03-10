@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище BaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Division" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeСode" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="DivisionID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Groupe" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupVisit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisitorID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="InformForThePassID" Type="int" Nullable="false" />
+          <Property Name="HostPartyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HostParty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DivisionID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Human">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="255" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PassportSeries" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PassportNumber" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PassportFile" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InformForThePass">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="VisitPurposeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonalVisit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisitorID" Type="int" Nullable="false" />
+          <Property Name="InformForThePassID" Type="int" Nullable="false" />
+          <Property Name="HostPartyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HumanID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Photo" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Visitor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Organization" Type="varchar" MaxLength="255" />
+          <Property Name="Note" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VisitPurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisitPurpose" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Employee__Depart__2CDD9F46">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Divisi__2BE97B0D">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__UserID__2AF556D4">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__Group__45A94D10">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__HostP__4885B9BB">
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostParty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="HostPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__Infor__47919582">
+          <End Role="InformForThePass" Type="Self.InformForThePass" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformForThePass">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="InformForThePassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__Visit__44B528D7">
+          <End Role="Visitor" Type="Self.Visitor" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visitor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="VisitorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HostParty__Divis__375B2DB9">
+          <End Role="Division" Type="Self.Division" Multiplicity="1" />
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HostParty">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HostParty__Emplo__384F51F2">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HostParty">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InformFor__Visit__347EC10E">
+          <End Role="VisitPurpose" Type="Self.VisitPurpose" Multiplicity="1" />
+          <End Role="InformForThePass" Type="Self.InformForThePass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitPurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformForThePass">
+              <PropertyRef Name="VisitPurposeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonalV__HostP__41D8BC2C">
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="1" />
+          <End Role="PersonalVisit" Type="Self.PersonalVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostParty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonalVisit">
+              <PropertyRef Name="HostPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonalV__Infor__40E497F3">
+          <End Role="InformForThePass" Type="Self.InformForThePass" Multiplicity="1" />
+          <End Role="PersonalVisit" Type="Self.PersonalVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformForThePass">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonalVisit">
+              <PropertyRef Name="InformForThePassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonalV__Visit__3EFC4F81">
+          <End Role="Visitor" Type="Self.Visitor" Multiplicity="1" />
+          <End Role="PersonalVisit" Type="Self.PersonalVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visitor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonalVisit">
+              <PropertyRef Name="VisitorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__HumanID__24485945">
+          <End Role="Human" Type="Self.Human" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Human">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="HumanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visitor__UserID__2FBA0BF1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Visitor" Type="Self.Visitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visitor">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BaseModelContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupVisit" EntityType="Self.GroupVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HostParty" EntityType="Self.HostParty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Human" EntityType="Self.Human" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformForThePass" EntityType="Self.InformForThePass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalVisit" EntityType="Self.PersonalVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visitor" EntityType="Self.Visitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisitPurpose" EntityType="Self.VisitPurpose" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Employee__Depart__2CDD9F46" Association="Self.FK__Employee__Depart__2CDD9F46">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Divisi__2BE97B0D" Association="Self.FK__Employee__Divisi__2BE97B0D">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__UserID__2AF556D4" Association="Self.FK__Employee__UserID__2AF556D4">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__Group__45A94D10" Association="Self.FK__GroupVisi__Group__45A94D10">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__HostP__4885B9BB" Association="Self.FK__GroupVisi__HostP__4885B9BB">
+            <End Role="HostParty" EntitySet="HostParty" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__Infor__47919582" Association="Self.FK__GroupVisi__Infor__47919582">
+            <End Role="InformForThePass" EntitySet="InformForThePass" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__Visit__44B528D7" Association="Self.FK__GroupVisi__Visit__44B528D7">
+            <End Role="Visitor" EntitySet="Visitor" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HostParty__Divis__375B2DB9" Association="Self.FK__HostParty__Divis__375B2DB9">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="HostParty" EntitySet="HostParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HostParty__Emplo__384F51F2" Association="Self.FK__HostParty__Emplo__384F51F2">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="HostParty" EntitySet="HostParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InformFor__Visit__347EC10E" Association="Self.FK__InformFor__Visit__347EC10E">
+            <End Role="VisitPurpose" EntitySet="VisitPurpose" />
+            <End Role="InformForThePass" EntitySet="InformForThePass" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonalV__HostP__41D8BC2C" Association="Self.FK__PersonalV__HostP__41D8BC2C">
+            <End Role="HostParty" EntitySet="HostParty" />
+            <End Role="PersonalVisit" EntitySet="PersonalVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonalV__Infor__40E497F3" Association="Self.FK__PersonalV__Infor__40E497F3">
+            <End Role="InformForThePass" EntitySet="InformForThePass" />
+            <End Role="PersonalVisit" EntitySet="PersonalVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonalV__Visit__3EFC4F81" Association="Self.FK__PersonalV__Visit__3EFC4F81">
+            <End Role="Visitor" EntitySet="Visitor" />
+            <End Role="PersonalVisit" EntitySet="PersonalVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__HumanID__24485945" Association="Self.FK__User__HumanID__24485945">
+            <End Role="Human" EntitySet="Human" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visitor__UserID__2FBA0BF1" Association="Self.FK__Visitor__UserID__2FBA0BF1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Visitor" EntitySet="Visitor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__Depart__2CDD9F46" FromRole="Department" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Division1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__Divisi__2BE97B0D" FromRole="Division" ToRole="Employee" />
+          <NavigationProperty Name="HostParty" Relationship="Self.FK__HostParty__Divis__375B2DB9" FromRole="Division" ToRole="HostParty" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeСode" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="DivisionID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Employee__Depart__2CDD9F46" FromRole="Employee" ToRole="Department" />
+          <NavigationProperty Name="Division" Relationship="Self.FK__Employee__Divisi__2BE97B0D" FromRole="Employee" ToRole="Division" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Employee__UserID__2AF556D4" FromRole="Employee" ToRole="User" />
+          <NavigationProperty Name="HostParty" Relationship="Self.FK__HostParty__Emplo__384F51F2" FromRole="Employee" ToRole="HostParty" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Groupe" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GroupVisit" Relationship="Self.FK__GroupVisi__Group__45A94D10" FromRole="Group" ToRole="GroupVisit" />
+        </EntityType>
+        <EntityType Name="GroupVisit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitorID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="InformForThePassID" Type="Int32" Nullable="false" />
+          <Property Name="HostPartyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK__GroupVisi__Group__45A94D10" FromRole="GroupVisit" ToRole="Group" />
+          <NavigationProperty Name="HostParty" Relationship="Self.FK__GroupVisi__HostP__4885B9BB" FromRole="GroupVisit" ToRole="HostParty" />
+          <NavigationProperty Name="InformForThePass" Relationship="Self.FK__GroupVisi__Infor__47919582" FromRole="GroupVisit" ToRole="InformForThePass" />
+          <NavigationProperty Name="Visitor" Relationship="Self.FK__GroupVisi__Visit__44B528D7" FromRole="GroupVisit" ToRole="Visitor" />
+        </EntityType>
+        <EntityType Name="HostParty">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DivisionID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Division" Relationship="Self.FK__HostParty__Divis__375B2DB9" FromRole="HostParty" ToRole="Division" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__HostParty__Emplo__384F51F2" FromRole="HostParty" ToRole="Employee" />
+          <NavigationProperty Name="GroupVisit" Relationship="Self.FK__GroupVisi__HostP__4885B9BB" FromRole="HostParty" ToRole="GroupVisit" />
+          <NavigationProperty Name="PersonalVisit" Relationship="Self.FK__PersonalV__HostP__41D8BC2C" FromRole="HostParty" ToRole="PersonalVisit" />
+        </EntityType>
+        <EntityType Name="Human">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PassportSeries" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PassportFile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__User__HumanID__24485945" FromRole="Human" ToRole="User" />
+        </EntityType>
+        <EntityType Name="InformForThePass">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VisitPurposeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GroupVisit" Relationship="Self.FK__GroupVisi__Infor__47919582" FromRole="InformForThePass" ToRole="GroupVisit" />
+          <NavigationProperty Name="VisitPurpose" Relationship="Self.FK__InformFor__Visit__347EC10E" FromRole="InformForThePass" ToRole="VisitPurpose" />
+          <NavigationProperty Name="PersonalVisit" Relationship="Self.FK__PersonalV__Infor__40E497F3" FromRole="InformForThePass" ToRole="PersonalVisit" />
+        </EntityType>
+        <EntityType Name="PersonalVisit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitorID" Type="Int32" Nullable="false" />
+          <Property Name="InformForThePassID" Type="Int32" Nullable="false" />
+          <Property Name="HostPartyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HostParty" Relationship="Self.FK__PersonalV__HostP__41D8BC2C" FromRole="PersonalVisit" ToRole="HostParty" />
+          <NavigationProperty Name="InformForThePass" Relationship="Self.FK__PersonalV__Infor__40E497F3" FromRole="PersonalVisit" ToRole="InformForThePass" />
+          <NavigationProperty Name="Visitor" Relationship="Self.FK__PersonalV__Visit__3EFC4F81" FromRole="PersonalVisit" ToRole="Visitor" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HumanID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__UserID__2AF556D4" FromRole="User" ToRole="Employee" />
+          <NavigationProperty Name="Human" Relationship="Self.FK__User__HumanID__24485945" FromRole="User" ToRole="Human" />
+          <NavigationProperty Name="Visitor" Relationship="Self.FK__Visitor__UserID__2FBA0BF1" FromRole="User" ToRole="Visitor" />
+        </EntityType>
+        <EntityType Name="Visitor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Organization" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GroupVisit" Relationship="Self.FK__GroupVisi__Visit__44B528D7" FromRole="Visitor" ToRole="GroupVisit" />
+          <NavigationProperty Name="PersonalVisit" Relationship="Self.FK__PersonalV__Visit__3EFC4F81" FromRole="Visitor" ToRole="PersonalVisit" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Visitor__UserID__2FBA0BF1" FromRole="Visitor" ToRole="User" />
+        </EntityType>
+        <EntityType Name="VisitPurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisitPurpose1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="InformForThePass" Relationship="Self.FK__InformFor__Visit__347EC10E" FromRole="VisitPurpose" ToRole="InformForThePass" />
+        </EntityType>
+        <Association Name="FK__Employee__Depart__2CDD9F46">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Divisi__2BE97B0D">
+          <End Role="Division" Type="Self.Division" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HostParty__Divis__375B2DB9">
+          <End Role="Division" Type="Self.Division" Multiplicity="1" />
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Division">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HostParty">
+              <PropertyRef Name="DivisionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__UserID__2AF556D4">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HostParty__Emplo__384F51F2">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HostParty">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__Group__45A94D10">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__HostP__4885B9BB">
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostParty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="HostPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__Infor__47919582">
+          <End Role="InformForThePass" Type="Self.InformForThePass" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformForThePass">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="InformForThePassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GroupVisi__Visit__44B528D7">
+          <End Role="Visitor" Type="Self.Visitor" Multiplicity="1" />
+          <End Role="GroupVisit" Type="Self.GroupVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visitor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GroupVisit">
+              <PropertyRef Name="VisitorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonalV__HostP__41D8BC2C">
+          <End Role="HostParty" Type="Self.HostParty" Multiplicity="1" />
+          <End Role="PersonalVisit" Type="Self.PersonalVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostParty">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonalVisit">
+              <PropertyRef Name="HostPartyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__HumanID__24485945">
+          <End Role="Human" Type="Self.Human" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Human">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="HumanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__InformFor__Visit__347EC10E">
+          <End Role="VisitPurpose" Type="Self.VisitPurpose" Multiplicity="1" />
+          <End Role="InformForThePass" Type="Self.InformForThePass" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisitPurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformForThePass">
+              <PropertyRef Name="VisitPurposeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonalV__Infor__40E497F3">
+          <End Role="InformForThePass" Type="Self.InformForThePass" Multiplicity="1" />
+          <End Role="PersonalVisit" Type="Self.PersonalVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformForThePass">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonalVisit">
+              <PropertyRef Name="InformForThePassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonalV__Visit__3EFC4F81">
+          <End Role="Visitor" Type="Self.Visitor" Multiplicity="1" />
+          <End Role="PersonalVisit" Type="Self.PersonalVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Visitor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonalVisit">
+              <PropertyRef Name="VisitorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visitor__UserID__2FBA0BF1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Visitor" Type="Self.Visitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Visitor">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Division" EntityType="Self.Division" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Group" EntityType="Self.Group" />
+          <EntitySet Name="GroupVisit" EntityType="Self.GroupVisit" />
+          <EntitySet Name="HostParty" EntityType="Self.HostParty" />
+          <EntitySet Name="Human" EntityType="Self.Human" />
+          <EntitySet Name="InformForThePass" EntityType="Self.InformForThePass" />
+          <EntitySet Name="PersonalVisit" EntityType="Self.PersonalVisit" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Visitor" EntityType="Self.Visitor" />
+          <EntitySet Name="VisitPurpose" EntityType="Self.VisitPurpose" />
+          <AssociationSet Name="FK__Employee__Depart__2CDD9F46" Association="Self.FK__Employee__Depart__2CDD9F46">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Divisi__2BE97B0D" Association="Self.FK__Employee__Divisi__2BE97B0D">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HostParty__Divis__375B2DB9" Association="Self.FK__HostParty__Divis__375B2DB9">
+            <End Role="Division" EntitySet="Division" />
+            <End Role="HostParty" EntitySet="HostParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__UserID__2AF556D4" Association="Self.FK__Employee__UserID__2AF556D4">
+            <End Role="User" EntitySet="User" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HostParty__Emplo__384F51F2" Association="Self.FK__HostParty__Emplo__384F51F2">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="HostParty" EntitySet="HostParty" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__Group__45A94D10" Association="Self.FK__GroupVisi__Group__45A94D10">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__HostP__4885B9BB" Association="Self.FK__GroupVisi__HostP__4885B9BB">
+            <End Role="HostParty" EntitySet="HostParty" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__Infor__47919582" Association="Self.FK__GroupVisi__Infor__47919582">
+            <End Role="InformForThePass" EntitySet="InformForThePass" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GroupVisi__Visit__44B528D7" Association="Self.FK__GroupVisi__Visit__44B528D7">
+            <End Role="Visitor" EntitySet="Visitor" />
+            <End Role="GroupVisit" EntitySet="GroupVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonalV__HostP__41D8BC2C" Association="Self.FK__PersonalV__HostP__41D8BC2C">
+            <End Role="HostParty" EntitySet="HostParty" />
+            <End Role="PersonalVisit" EntitySet="PersonalVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__HumanID__24485945" Association="Self.FK__User__HumanID__24485945">
+            <End Role="Human" EntitySet="Human" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__InformFor__Visit__347EC10E" Association="Self.FK__InformFor__Visit__347EC10E">
+            <End Role="VisitPurpose" EntitySet="VisitPurpose" />
+            <End Role="InformForThePass" EntitySet="InformForThePass" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonalV__Infor__40E497F3" Association="Self.FK__PersonalV__Infor__40E497F3">
+            <End Role="InformForThePass" EntitySet="InformForThePass" />
+            <End Role="PersonalVisit" EntitySet="PersonalVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonalV__Visit__3EFC4F81" Association="Self.FK__PersonalV__Visit__3EFC4F81">
+            <End Role="Visitor" EntitySet="Visitor" />
+            <End Role="PersonalVisit" EntitySet="PersonalVisit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visitor__UserID__2FBA0BF1" Association="Self.FK__Visitor__UserID__2FBA0BF1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Visitor" EntitySet="Visitor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BaseModelContainer" CdmEntityContainer="BaseEntities">
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="BaseModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Department1" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Division">
+            <EntityTypeMapping TypeName="BaseModel.Division">
+              <MappingFragment StoreEntitySet="Division">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Division1" ColumnName="Division" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="BaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EmployeeСode" ColumnName="EmployeeСode" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="BaseModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Groupe" ColumnName="Groupe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupVisit">
+            <EntityTypeMapping TypeName="BaseModel.GroupVisit">
+              <MappingFragment StoreEntitySet="GroupVisit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="InformForThePassID" ColumnName="InformForThePassID" />
+                <ScalarProperty Name="HostPartyID" ColumnName="HostPartyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HostParty">
+            <EntityTypeMapping TypeName="BaseModel.HostParty">
+              <MappingFragment StoreEntitySet="HostParty">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Human">
+            <EntityTypeMapping TypeName="BaseModel.Human">
+              <MappingFragment StoreEntitySet="Human">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportFile" ColumnName="PassportFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformForThePass">
+            <EntityTypeMapping TypeName="BaseModel.InformForThePass">
+              <MappingFragment StoreEntitySet="InformForThePass">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="VisitPurposeID" ColumnName="VisitPurposeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalVisit">
+            <EntityTypeMapping TypeName="BaseModel.PersonalVisit">
+              <MappingFragment StoreEntitySet="PersonalVisit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
+                <ScalarProperty Name="InformForThePassID" ColumnName="InformForThePassID" />
+                <ScalarProperty Name="HostPartyID" ColumnName="HostPartyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BaseModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="BaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HumanID" ColumnName="HumanID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visitor">
+            <EntityTypeMapping TypeName="BaseModel.Visitor">
+              <MappingFragment StoreEntitySet="Visitor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisitPurpose">
+            <EntityTypeMapping TypeName="BaseModel.VisitPurpose">
+              <MappingFragment StoreEntitySet="VisitPurpose">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VisitPurpose1" ColumnName="VisitPurpose" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

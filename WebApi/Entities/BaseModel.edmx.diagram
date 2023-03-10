@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dea0e6eb87514ae8a6145fcd70bc6c55" Name="Diagram1">
+        <EntityTypeShape EntityType="BaseModel.Department" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Division" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Employee" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Group" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.GroupVisit" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.HostParty" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Human" Width="1.5" PointX="1.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.InformForThePass" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.PersonalVisit" Width="1.5" PointX="10.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.User" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Visitor" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.VisitPurpose" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="BaseModel.FK__Employee__Depart__2CDD9F46" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Employee__Divisi__2BE97B0D" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__HostParty__Divis__375B2DB9" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Employee__UserID__2AF556D4" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__HostParty__Emplo__384F51F2" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__GroupVisi__Group__45A94D10" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__GroupVisi__HostP__4885B9BB" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__GroupVisi__Infor__47919582" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__GroupVisi__Visit__44B528D7" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__PersonalV__HostP__41D8BC2C" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__User__HumanID__24485945" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__InformFor__Visit__347EC10E" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__PersonalV__Infor__40E497F3" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__PersonalV__Visit__3EFC4F81" ManuallyRouted="false" />
+        <AssociationConnector Association="BaseModel.FK__Visitor__UserID__2FBA0BF1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
