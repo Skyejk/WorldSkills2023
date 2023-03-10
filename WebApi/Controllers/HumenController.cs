@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Entities;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -17,9 +18,10 @@ namespace WebApi.Controllers
         private BaseEntities db = new BaseEntities();
 
         // GET: api/Humen
-        public IQueryable<Human> GetHuman()
+        [ResponseType(typeof(List<ResponseHuman>))]
+        public IHttpActionResult GetHuman()
         {
-            return db.Human;
+            return Ok(db.Human.ToList().ConvertAll(p => new ResponseHuman(p)));
         }
 
         // GET: api/Humen/5
