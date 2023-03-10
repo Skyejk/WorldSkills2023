@@ -40,4 +40,4 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Authors
 
-* **Skye J.K.** - *Initial work* - [Skyejk](https://github.com/Skyejk)
+* **Skye J.K.** - *Preparing for WorldSkills2023* - [Skyejk](https://github.com/Skyejk)
